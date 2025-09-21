@@ -65,7 +65,7 @@ DialogHeight=540
 DialogWidth=720
 
 [Containments][29][General]
-positions={"0x0":[],"2048x1280":["9","18","desktop:/arch","8","17"]}
+positions={"0x0":[],"2048x1280":["1","18"]}
 sortMode=-1
 
 [Containments][29][Wallpaper][com.github.catsout.wallpaperEngineKde][General]
@@ -490,4 +490,4 @@ AppletOrder=108;107;60;61;58;65;72;69;59;57;71;55;67;73;81;20;21;86
 
 [ScreenMapping]
 itemsOnDisabledScreens=
-screenMapping=desktop:/arch,0,3bec1506-8777-435a-ad73-eeff85582a84,desktop:/test.md,0,3bec1506-8777-435a-ad73-eeff85582a84
+screenMapping=desktop:/test.md,0,3bec1506-8777-435a-ad73-eeff85582a84
