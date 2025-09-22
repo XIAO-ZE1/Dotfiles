@@ -24,7 +24,12 @@ MoveResize=87
 
 [Plugins]
 contrastEnabled=true
+desktopchangeosdEnabled=false
+krohnkiteEnabled=false
+kzonesEnabled=false
 magiclampEnabled=true
+minimizeallEnabled=false
+poloniumEnabled=false
 sheetEnabled=true
 squashEnabled=false
 translucencyEnabled=true
@@ -37,7 +42,7 @@ padding=4
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
 [Tiling][e505a9a1-c51e-4c41-b57d-f2ff02f54152][e7a47889-d02a-45b5-abdc-ee1d0dfc7ca3]
-tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+tiles={"layoutDirection":"floating","tiles":[]}
 
 [Wayland]
 InputMethod[$e]=/usr/share/applications/org.fcitx.Fcitx5.desktop

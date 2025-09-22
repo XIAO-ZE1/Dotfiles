@@ -1096,3 +1096,5 @@ sudo chattr +i /etc/resolv.conf
 # 如果需要编辑文件 需要取消一下锁定
 sudo chattr -i /etc/resolv.conf
 ```
+
+## kvm虚拟机

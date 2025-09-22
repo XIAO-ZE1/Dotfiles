@@ -9,6 +9,7 @@
 <https://github.com/kmephistoh/dotfiles/tree/main/config>
 <https://github.com/Isoheptane/dotfiles/tree/blog-example>
 <https://github.com/theniceboy/.config/tree/master>
+<https://codeberg.org/unixchad/dotfiles>
 
 ## Hyprland
 

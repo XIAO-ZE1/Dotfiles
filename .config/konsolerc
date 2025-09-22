@@ -1,3 +1,5 @@
+MenuBar=Disabled
+
 [Desktop Entry]
 DefaultProfile=配置方案 1.profile
 
@@ -7,6 +9,18 @@ ConfigVersion=1
 [KonsoleWindow]
 FocusFollowsMouse=true
 ShowWindowTitleOnTitleBar=true
+
+[MainWindow][Toolbar mainToolBar]
+IconSize=16
+ToolButtonStyle=IconOnly
+
+[MainWindow][Toolbar sessionToolbar]
+IconSize=16
+ToolButtonStyle=IconOnly
+
+[Toolbar sessionToolbar]
+IconSize=16
+ToolButtonStyle=IconOnly
 
 [UiSettings]
 ColorScheme=
