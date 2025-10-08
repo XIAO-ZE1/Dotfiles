@@ -1,14 +1,49 @@
-# 忽略不需要版本控制的文件
+# === 编辑器临时文件 ===
+*~
 *.swp
+*.swo
 *.bak
 *.tmp
 
-# 忽略缓存和日志文件
-cache/
-logs/
+# === 系统文件 ===
+.DS_Store
+Thumbs.db
 *.log
 
-# 忽略敏感信息
+# === 缓存和历史文件 ===
+.cache/
+.local/
+*.cache
+.history
+.bash_history
+.zsh_history
+.viminfo
+
+# === 敏感文件 ===
 *.key
 *.pem
+*.secret
 .env
+*.token
+id_rsa*
+id_dsa*
+
+# === 应用特定忽略 ===
+# Vim插件
+vim/.vim/plugged/
+
+# Zsh缓存
+.zcompdump*
+.zcompcache/
+
+# Zim插件
+zsh/.zim/modules/
+
+# Git相关（避免循环）
+.git/
+.gitignore_global
+
+# 包管理器目录
+node_modules/
+__pycache__/
+*.pyc
