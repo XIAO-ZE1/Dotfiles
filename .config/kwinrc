@@ -22,6 +22,9 @@ Inactive=96
 Menus=97
 MoveResize=87
 
+[ElectricBorders]
+BottomRight=ShowDesktop
+
 [Plugins]
 contrastEnabled=true
 desktopchangeosdEnabled=false

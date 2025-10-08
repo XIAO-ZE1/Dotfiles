@@ -1,23 +1,27 @@
 # 写在前面
 
-此文章写于2025下半年，如果当你看到这篇文档时已经距离很久了，那么我的一些配置可能不再适用，这时遇到问题的话，强烈建议你去arch wiki寻求帮助，几乎所有关于linux的问题都能在wiki找到答案。
+此文章主要记录了我的archlinux配置和使用，如果在参考这篇文章时遇到问题，强烈建议前往arch wiki寻求帮助，几乎所有关于linux的问题都能在wiki找到答案。
 
-如果你对linux完全不了解，那么光是安装系统就已经难以上手了，各种配置更是眼花缭乱，建议先使用开箱即用的debian系或红帽系的稳定发行版中学习一番linux。我与linux初次接触是树莓派的基于debian11的raspbian os，在arm平台对于linux有一定的应用学习之后才想要将电脑换作linux操作系统用于日常开发的，不过我的娱乐主机还是windows系统(毕竟一些专有软件和游戏适配还是无可替代的)。现在我还有一台debian12的香橙派5用作服务小主机，用于托管网站和docker应用，味道好极了。
+如果你对linux完全不了解，那么光是安装系统就已经有了上手门槛，建议先使用开箱即用的debian系或红帽系的稳定发行版中学习一番linux。我与linux初次接触是树莓派的基于debian11的raspbian os，在arm平台对于linux有一定的应用学习之后，才想要将电脑换作linux操作系统用于日常开发的，不过我的娱乐主机还是windows系统(毕竟一些专有软件和游戏适配还是无可替代的)。现在我还有一台debian12的香橙派5用作服务小主机，用于托管网站和docker应用，味道好极了。
 
 - Arch linux是滚动发行的，每个工具组件都是最新的，你能体验到linux世界最前沿的技术和信息。
 - AUR无疑是Arch linux的宝藏。你能找到你想要找寻的各种软件（或其替代品），一行命令就可以搞定，一键安装，滚动更新，告别复杂环境。
 - 极致的简洁和控制，摒弃掉你不需要的内容，不会像Windows一样一大堆不认识的进程和卸载不了的系统组件，arch允许你定制你所想要的arch，完全掌控你的系统。
 
-以下内容仅作我个人一些安装配置的记录，基本涉及我对我的`archlinux`的所有配置，不会详细讲解为什么这样选择(只有适合自己的才是最好的)或者参数含义，因为github，wiki和网上都有详细的说明。
+以下内容仅作我个人一些安装配置的记录，基本涉及我对我的`archlinux`的所有配置，不会详细讲解为什么这样选择(只有适合自己的才是最好的)或者参数含义，因为github，wiki和参考文章都有详细的说明。
+
+另外，我的普通用户为xiaoze，注意复制代码时家目录的路径，用户名替换成你的。
 
 ## 参考
 
->全面的教程安装和配置<https://archlinuxstudio.github.io/>
->也可以看这个：archlinux 简明指南，内容上差不多，这个方便访问<https://arch.icekylin.online/>
->archlinux wiki 中文社区，最全面的linux wiki，有什么困难就在这里找找看吧<https://www.archlinuxcn.org/>
->现代化的 Archlinux 安装，Btrfs、快照、休眠以及更多<https://sspai.com/post/78916>
->win11双系统安装教程b站视频<https://www.bilibili.com/video/BV12ZghzgEjs/?spm_id_from=333.337.search-card.all.click>
->KDE Plasma 6介绍<https://www.vindo.cn/blog/arch-linux-kde6>
+>全面的教程安装和配置 <https://archlinuxstudio.github.io/>
+>也可以看这个：archlinux 简明指南，是前者的派生文档 <https://arch.icekylin.online/>
+>archlinux wiki 中文社区，最全面的linux wiki，有什么困难就在这里找找看吧 <https://www.archlinuxcn.org/>
+>现代化的 Archlinux 安装，Btrfs、快照、休眠以及更多 <https://sspai.com/post/78916>
+>win11双系统安装教程b站视频 <https://www.bilibili.com/video/BV12ZghzgEjs/?spm_id_from=333.337.search-card.all.click>
+>KDE Plasma 6介绍 <https://www.vindo.cn/blog/arch-linux-kde6>
+>终端命令替代工具wiki <https://wiki.archlinux.org/title/Core_utilities>
+>软件推荐<https://www.oryoy.com/news/zhang-wo-arch-linux-zhuo-mian-ti-yan-sheng-ji-50-kuan-re-men-ruan-jian-shen-du-tui-jian.html><https://czyt.eu.org/post/arch-awesome-software/>
 
 ## 安装
 
@@ -25,18 +29,35 @@ arch不会像debian或ubuntu等发行版给你一个开箱即用的安装引导�
 
 不过现在有archinstall安装脚本，命令行连接网络后运行`archlinux`基本可以安装一步到位。这部分内容我参考的[b站视频](https://www.bilibili.com/video/BV12ZghzgEjs/?spm_id_from=333.337.search-card.all.click)，使用了`archinstall`。
 
+连接网络
+
+```zsh
+iwctl 
+# 进入交互式命令行
+device list 
+# 列出无线网卡设备名，比如无线网卡看到叫 wlan0
+station wlan0 scan 
+# 扫描网络
+station wlan0 get-networks 
+# 列出所有 wifi 网络
+station wlan0 connect wifi-name 
+# 进行连接，注意这里无法输入中文。回车后输入密码即可
+exit
+# 连接成功后退出
+```
+
 在此记录下我的情况：我是win11+archlinux双系统，共享一块1T硬盘
 
 - Windows是`200G的C盘系统盘`，`300M的EFI分区`，`16M的MBR保留分区`。
 - linux是`500M的EFI分区`，`284G的btrfs分区`(btrfs挺好用，快照很适合滚动发行的arch，这个分区是根目录和home目录，linux占用不了多少空间，100G都行)，`16G的swap分区`(我这里是用于硬盘休眠的，不过用swap文件也可以，配置稍微麻烦，但是大小可变)。
 - 剩下的都是NTFS的`D盘`，用于存储图片，文档等资源(linux可以直接访问ntfs格式的c盘和d盘(通过ntfs-3g实现)，而windows访问linux的内容就很难了，github上面有这个东西，我是以linux为主力，就用不到)。
-- archlinux + kde桌面系统 + hyprland窗口管理器(双桌面)
+- archlinux + kde桌面系统 (+ hyprland窗口管理器)
 
-由于此电脑主要用于编程开发写作，玩游戏等娱乐在另一台50系n卡的电脑，因为n卡的配置嘛。。挺麻烦的，我就直接只用了intel的核显驱动(需要独显或双显卡的配置请参考我给出的参考链接教程)，这里就不得不提`linus`的名场面：`Nvidia f**k you！`哈哈哈。
-
-`win和linux双系统`使用脚本安装的话建议linux和Windows的boot(EFI)分区区分开，在电脑UEFI界面设置以archlinux boot为先发顺序，这样后续就可以在grub引导页面用archlinux boot引导打开win11 boot进入Windows系统了。命令行安装的话两个系统的boot可以放在一起(最好安装win时直接boot分区给1G)，手动配置相关参数。
+`win和linux双系统`使用脚本安装的话建议linux和Windows的boot(EFI)分区区分开，在电脑UEFI界面设置以archlinux boot为先发顺序，这样后续就可以在grub引导页面用archlinux boot引导打开win11 boot进入Windows系统了。命令行安装的话两个系统的boot可以放在一起(最好安装win时直接boot分区给1G)，手动配置相关文件。
 
 小声bb：在linux初学阶段安装了arch，终端编辑都用的`nano`，熟悉了命令行操作后用`vim`和`nvim`真的很好用，vscode我都用的neovim插件来操作哈哈哈。鉴于nano易于上手(跟window的notepad差不多)，所以本文档多以nano编辑，也可以花一个小时学习下vim慢慢操作熟悉，你会感受到键盘操作的乐趣的！
+
+另外，现在windows系统的wsl子系统也有archlinux的子系统了，下载wsl2后运行wsl --install archlinux即可下载，这个系统下载之后任何内容包括sudo，nano等工具都没有，需要自己手动下载，可控性极强，也可以下载个桌面。注意wsl默认NAT模式下无法让wsl的arch使用windows下的网络代理，需要先进行配置，详见<https://blog.csdn.net/2301_79224952/article/details/147443235>
 
 ## 汉化
 
@@ -79,13 +100,13 @@ grub-mkconfig -o /boot/grub/grub.cfg
 ## 用户/用户组/主机操作
 
 ```zsh
-# 添加用户和密码并加入用户组
+# 添加用户和密码并加入wheel用户组
 sudo useradd -m xiaoze
 sudo passwd  xiaoze
 sudo usermod -aG wheel  xiaoze
 
 # 配置wheel用户组可以提权
-sudo nano /etc/sudoers
+sudo nano /etc/sudoers # 或sudo visudo
 %wheel ALL=(ALL:ALL) ALL # 取消这一行注释
 
 # 配置主机名
@@ -254,7 +275,7 @@ ProvidersUrl=http://download.kde.org/ocs/providers.xml
 </providers>
 ```
 
-打开多试几次，实在不行或者无法安装依赖的话，就点击主页去官网手动下载安装，这是kde本身网络问题
+打开多试几次，实在不行或者无法安装依赖的话，就点击主页去官网手动下载安装，这应该是kde本身网络问题
 
 ## 添加或修改取消关机等待90s
 
@@ -399,9 +420,17 @@ sudo pacman-key --lsign-key "farseerfc@archlinux.org"
 ```zsh
 # Intel 核芯显卡 
 sudo pacman -S mesa lib32-mesa vulkan-intel lib32-vulkan-intel
+
+# 【】AMD 集成显卡
+sudo pacman -S mesa lib32-mesa xf86-video-amdgpu vulkan-radeon lib32-vulkan-radeon
+
+# 【】独立显卡 
+sudo pacman -S nvidia nvidia-open nvidia-settings lib32-nvidia-utils
+
+# 如果同时拥有集成显卡与独立显卡的笔记本电脑，可以使用 optimus-manager 等工具自动切换。
 ```
 
-`英伟达显卡`和`AMD显卡`和`双显卡`配置参考官方文档，我只配置intel核显
+`英伟达显卡`和`AMD集显`和`双显卡`具体配置参考官方文档，我只配置intel核显
 
 ## 透明代理
 
@@ -457,6 +486,8 @@ alias cd='z' # 使用zoxide代替cd (可选)
 curl -fsSL https://raw.githubusercontent.com/zimfw/install/master/install.zsh | zsh
 vim ~/.zimrc
 zmodule romkatv/powerlevel10k
+zmodule sorin-ionescu/prezto --root modules/command-not-found --no-submodules # (可选)
+zmodule ohmyzsh/ohmyzsh --root plugins/sudo # (可选)按两下esc，可在前面加sudo
 zimfw install
 # 接下来跟随p10k的指引配置即可(没反应就再重新打开个终端试试)，如果你想要跨平台或者用其他的比如powershell，bash，fish，那么starship是个不错的选择
 
@@ -473,6 +504,9 @@ pacman -Ql nano-syntax-highlighting # 查询.nanorc配置文件的位置
 cd /etc
 sudo nano nanorc
 include "/usr/share/nano-syntax-highlighting/*.nanorc" # 最后添加这一行生效
+
+include "/usr/share/nano/*.nanorc"
+include "/usr/share/nano/extra/*.nanorc"
 ```
 
 ## vim美化 和 nvim安装美化
@@ -483,7 +517,7 @@ include "/usr/share/nano-syntax-highlighting/*.nanorc" # 最后添加这一行�
 # 安装vim-plug插件
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim 
-sudo vim ~/.vimrc # root用户，普通用户不加sudo
+vim ~/.vimrc
 call plug#begin()
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -528,11 +562,11 @@ nano /usr/share/zsh/plugins/fzf-tab-git/fzf.zsh # 自定义配置
 export RUNEWIDTH_EASTASIAN=0  # 修复东亚字符宽度显示
 
 # FZF 默认选项
-# export FZF_DEFAULT_OPTS="--preview --bash ~/.zsh/file_preview.sh {} --height 12 --layout=reverse --history=/home/xia>
-export FZF_DEFAULT_OPTS="--preview 'bash /usr/share/zsh/plugins/fzf-tab-git/file_preview.sh {}' --height 12 --layout=r>
+# export FZF_DEFAULT_OPTS="--preview --bash ~/.zsh/file_preview.sh {} --height 12 --layout=reverse --history=/home/xiaoze/.zsh/fzfhistory"
+export FZF_DEFAULT_OPTS="--preview 'bash /usr/share/zsh/plugins/fzf-tab-git/file_preview.sh {}' --height 12 --layout=reverse --border --history=$HOME/.zsh/cache/fzfhistory"
 
 # FZF 默认搜索命令（使用 fd）
-export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude=--exclude={.git,.idea,.vscode,sass-cache,node_modu>
+export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude=--exclude={.git,.idea,.vscode,sass-cache,node_modules,build,dist,vendor}"
 
 # ==================== fzf-tab 样式配置 ====================
 # 禁用原生补全菜单
@@ -564,7 +598,7 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'lsd -1 --hidden --color=always $rea
 
 # 进程管理预览
 zstyle ':completion:*:*:*:processes' command 'ps -u $USER -o pid,user,comm -w -w'
-zstyle ':fzf-tab:complete:(kill|ps):argument-rest' fzf-preview '[ "$group" = "process ID" ] && ps --pid=$word -o cmd ->
+zstyle ':fzf-tab:complete:(kill|ps):argument-rest' fzf-preview '[ "$group" = "process ID" ] && ps --pid=$word -o cmd --no-headers -w -w'
 
 # 系统服务预览
 zstyle ':fzf-tab:complete:systemctl-*:*' fzf-preview 'SYSTEMD_COLORS=1 systemctl status $word'
@@ -577,7 +611,7 @@ zstyle ':fzf-tab:complete:yay:*' fzf-preview 'yay -Qi $word 2>/dev/null || yay -
 zstyle ':fzf-tab:complete:git-(add|diff|restore):*' fzf-preview 'git diff --color=always $word'
 zstyle ':fzf-tab:complete:git-log:*' fzf-preview 'git log --oneline --graph --color=always $word'
 zstyle ':fzf-tab:complete:git-show:*' fzf-preview 'git show --color=always $word'
-zstyle ':fzf-tab:complete:git-checkout:*' fzf-preview '[ -f $realpath ] && git diff --color=always $word || git log -->
+zstyle ':fzf-tab:complete:git-checkout:*' fzf-preview '[ -f $realpath ] && git diff --color=always $word || git log --oneline --graph --color=always $word'
 
 # 文档查询预览
 zstyle ':fzf-tab:complete:(|run-help|man|tldr):*' fzf-preview 'tldr --color always $word'
@@ -609,21 +643,28 @@ mime=$(file -bL --mime-type "$1")
 category=${mime%%/*}
 
 if [ -d "$1" ]; then
-lsd -l --permission octal --icon always --size short --group-dirs first  --date relative --icon always --color alw>
+    lsd -l --permission octal --icon always --size short --group-dirs first  --date relative --icon always --color always "$1" 2>/dev/null
 elif [ "$category" = text ]; then
-bat --style numbers --color=always "$1" 2>/dev/null | head -1000
+    bat --style numbers --color=always "$1" 2>/dev/null | head -1000
 elif [ "$mime" = application/pdf ]; then
-pdftotext "$1" - | less
+    pdftotext "$1" - | less
 elif [ "$category" = image ]; then
-chafa --size=$(($COLUMNS/2)) "$1" 2>/dev/null
+    chafa --size=$(($COLUMNS/2)) "$1" 2>/dev/null
 else
-echo "$1 is a $category file"
+    echo "$1 is a $category file"
 fi
 ```
 
 想要实现其他的配置或想知道每个命令的含义，可以参考[官方文档](https://github.com/Aloxaf/fzf-tab)和AI。
 
-## ranger 文件管理器，终端运行
+## 终端文件管理器
+
+### yazi (基于rust编写，比起后文提到的ranger我更推荐这个)
+
+```zsh
+```
+
+### ranger (ranger基于python编写，挺好用，功能丰富，但现在我使用rust编写的yazi，开箱即用，这里文档保留ranger配置内容)
 
 [arch wiki](https://wiki.archlinux.org.cn/title/Ranger)
 
@@ -796,8 +837,7 @@ yay -S downgrade
 yay -S octopi
 
 # fastfetch 可以将系统信息和发行版 logo 一并打印出来
-sudo pacman -S fastfetch
-fastfetch
+sudo pacman -S fastfetchl
 
 # Unarchiver 解压 Windows 下的压缩包
 sudo pacman -S unarchiver
@@ -924,6 +964,12 @@ yay -S visual-studio-code-bin
 
 # tmux 终端复用，多任务管理。让你在远程服务器或长时间运行的任务中高效工作，即使网络断开或终端关闭，任务也不会中断
 sudo pacman -S tmux
+
+# sniffent 网络流量抓包工具
+sudo pacman -S sniffent
+
+# realvnc-vnc-viewer 用于显示香橙派，树莓派等远程桌面
+yay -S realvnc-vnc-viewer
 ```
 
 ### 常见软件
@@ -931,8 +977,22 @@ sudo pacman -S tmux
 含有闭源专有软件，对隐私安全有要求的建议安装开源软件替代，以实现完全隐私可控
 
 ```zsh
+# [linux推荐的下载软件](https://www.bilibili.com/video/BV1fPvNzmEC2/?spm_id_from=333.337.search-card.all.click&vd_source=7bd0bdc9ece4aa8666f734929c9b606d)
+yay -S qbittorrent-enhanced-git
+# BT下载⽹站推荐
+https://thepiratebay.org/index.html
+https://www.1377x.to/
+https://yts.mx/
+
 # Watt toolkit (steam++!)
 yay -S watt-toolkit-bin
+
+# Steam 游戏平台
+sudo pacman -S steam
+
+# Lutris linux开源游戏平台
+sudo pacman -S lutris
+
 
 # 百度网盘 闭源
 yay -S baidunetdisk-bin
@@ -975,6 +1035,12 @@ sudo pacman -S obs-studio
 
 # bitwarden 密码管理器，可部署也可自建
 sudo pacman -S bitwarden
+
+# gimp 一个自由开源的位图图像编辑器。其对标 Adobe 的 Photoshop
+sudo pacman -S gimp
+
+# zyfun 轻量高颜值视频客户端
+yay -S zyfun-appimage
 ```
 
 ### kde: sudo pacman -S <软件名>
@@ -1001,6 +1067,8 @@ kate
 dolphin
 # kio-admin 为 Dolphin 文件管理器添加了“以管理员身份打开”的右键菜单选项
 kio-admin
+# okular Okular 是 KDE 开发的一款功能丰富、轻巧快速的跨平台文档阅读器。可以使用它来阅读 PDF 文档、漫画电子书、Epub 电子书，浏览图像，显示 Markdown 文档等。
+okular
 ```
 
 ## 【】ipv6  隐私拓展 具体可看<https://wiki.archlinuxcn.org/zh-tw/IPv6>
@@ -1097,4 +1165,12 @@ sudo chattr +i /etc/resolv.conf
 sudo chattr -i /etc/resolv.conf
 ```
 
-## kvm虚拟机
+## linux 和 windows 公用键鼠 Input-Leap
+
+<www.vindo.cn/blog/arch-windows>
+
+```zsh
+yay -S input-leap-bin
+```
+
+参照文章内容进行配置，注意要在同一个局域网，校园网这些因为有网络隔离，建议用手机热点连接或单独搞一个路由器或软路由来连接

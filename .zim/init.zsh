@@ -16,3 +16,5 @@ source "${HOME}/.zim/modules/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source "${HOME}/.zim/modules/zsh-history-substring-search/zsh-history-substring-search.zsh"
 source "${HOME}/.zim/modules/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source "${HOME}/.zim/modules/powerlevel10k/powerlevel10k.zsh-theme"
+source "${HOME}/.zim/modules/prezto/modules/command-not-found/init.zsh"
+source "${HOME}/.zim/modules/ohmyzsh/plugins/sudo/sudo.plugin.zsh"

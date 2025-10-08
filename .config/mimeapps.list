@@ -27,3 +27,4 @@ x-scheme-handler/clash=clash-verge.desktop
 x-scheme-handler/clash-verge=clash-verge-handler.desktop
 x-scheme-handler/http=firefox.desktop
 x-scheme-handler/https=firefox.desktop
+x-scheme-handler/zy=zyfun.desktop

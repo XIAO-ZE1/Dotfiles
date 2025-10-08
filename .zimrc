@@ -55,3 +55,6 @@ zmodule zsh-users/zsh-autosuggestions
 # }}} End configuration added by Zim install
 
 zmodule romkatv/powerlevel10k
+zmodule sorin-ionescu/prezto --root modules/command-not-found --no-submodules
+zmodule ohmyzsh/ohmyzsh --root plugins/sudo
+#zmodule Aloxaf/fzf-tab
