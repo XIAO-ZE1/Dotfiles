@@ -505,7 +505,7 @@ pacman -Ql nano-syntax-highlighting # 查询.nanorc配置文件的位置
 cd /etc
 sudo nano nanorc
 include "/usr/share/nano-syntax-highlighting/*.nanorc" # 最后添加这一行生效
-
+# 官方自带的高亮配置文件
 include "/usr/share/nano/*.nanorc"
 include "/usr/share/nano/extra/*.nanorc"
 ```
@@ -525,7 +525,7 @@ Plug 'vim-airline/vim-airline-themes'
 let g:airline_theme='ayu_dark'
 call plug#end()
 
-:PlugInstall # 输入这了来下载插件，这个插件能够美化底部内容显示
+:PlugInstall # 输入这了来下载插件，这个插件能够美化底部内容显示(:wq保存退出重新进入~/.vimrc来执行)
 
 vimtutor # 来学习vim吧！
 
@@ -662,7 +662,33 @@ fi
 
 ### yazi (基于rust编写，比起后文提到的ranger我更推荐这个)
 
+yazi官方文档<https://yazi-rs.github.io/docs/installation>
+yazi参考文档<https://instaboard.app/b/UYDDqLRsB>
+文档内讲述全面且详细，我不做赘述
+按.显示隐藏文件，其他大部分操作同vim操作
+
 ```zsh
+nano ~/.zshrc
+# 添加函数，之后使用y来代替yazi命令打开文件管理器
+function y() {
+ local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+ yazi "$@" --cwd-file="$tmp"
+ IFS= read -r -d '' cwd < "$tmp"
+ [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+ rm -f -- "$tmp"
+}
+
+# 我的具体yazi配置文件内容较多，从github访问
+<https://github.com/XIAO-ZE1/Dotfiles>
+
+# 在此列出我使用的插件
+ya pkg add yazi-rs/plugins:full-border
+ya pkg add yazi-rs/plugins:git
+ya pkg add yazi-rs/plugins:zoom
+ya pkg add yazi-rs/plugins:smart-filter
+ya pkg add yazi-rs/plugins:chmod
+
+# yazi主题选择：https://github.com/yazi-rs/flavors/tree/d04a298a8d4ada755816cb1a8cfb74dd46ef7124
 ```
 
 ### ranger (ranger基于python编写，挺好用，功能丰富，但现在我使用rust编写的yazi，开箱即用，这里文档保留ranger配置内容)
@@ -679,7 +705,7 @@ echo "export RANGER_LOAD_DEFAULT_RC=false">>~/.zshrc # 如果要使用~/.config/
 
 sudo pacman -S highlight  # 代码高亮
 sudo pacman -S atool　    # 压缩包预览
-sudo pacman -S python-pillow # 图片预览，使用kitty终端要装这个，konsole预览不了图片，w3m不支持。。
+sudo pacman -S python-pillow # 图片预览，使用kitty终端要装这个
 # sudo pacman -S mediainfo  # 多媒体文件预览
 # sudo pacman -S catdoc     # doc预览
 # sudo pacman -S docx2txt   # docx预览

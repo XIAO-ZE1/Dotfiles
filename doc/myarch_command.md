@@ -73,6 +73,8 @@ journalctl -p 3..4 -b --since="10 minutes ago"
 
 ## git管理备份
 
+### /etc:etckeeper
+
 ```zsh
 # 使用etckeeper来跟踪/etc目录的变化
 sudo pacman -S etckeeper
@@ -84,16 +86,30 @@ git reset --hard <某个旧版本号> # 回滚
 sudo git log --oneline # 查看简洁的提交历史
 sudo git log -p # 查看详细历史，包括每次修改的具体内容
 
+```
+
+### dotfiles:git+stow 我的dotfiles：<https://github.com/XIAO-ZE1/Dotfiles>
+
+使用dotfiles来管理.开头的配置文件，可以统一管理用户的自定义配置，本体放在dotfiles目录下，软链接到原来的位置
+再用git和github可以分享配置，实现快速部署配置文件和多设备同步配置
+
+```zsh
 # 配置文件使用stow统一管理dotfiles，同步到github仓库，实现快速部署配置文件
 sudo pacman -S stow
 mkdir ~/dotfiles
 cd ~/dotfiles
-git init
-# gitignore可以自己配置，也可以参考我的：https://github.com/XIAO-ZE1/Dotfiles
-# 例如迁移 .zshrc
-mv ~/.zshrc ~/dotfiles/
-ln -s ~/dotfiles/.zshrc ~/.zshrc # 创建符号链接，指向配置文件
 
+# 例如迁移.zshrc，链接到~/目录下
+mkdir ~/dotfiles/zsh
+mv ~/.zshrc ~/dotfiles/zsh
+stow --verbose zsh
+# 如果要链接到~/.config下的文件
+mkdir ~/dotfiles/nvim/.config/nvim
+mv ~/.config/nvim ~/dotfiles/nvim/.config/nvim
+stow --verbose nvim
+
+# 之后使用git版本控制(根据自己情况配置.gitignore文件)
+git init
 git add .zshrc
 git commit -m "Initial commit: core dotfiles and configs"
 

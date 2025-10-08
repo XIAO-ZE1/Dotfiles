@@ -1,59 +1,37 @@
 * {
-    /* `otf-font-awesome` is required to be installed for icons */
-    font-family: "Fira Mono";
-    font-weight: 500;
-    font-size: 18px;
-
-    border-radius: 10px;
     text-shadow: none;
-    
-    transition-property: background;
-    transition-duration: 0.2s;
 }
 
 window#waybar {
+    /* Large size for shorter side padding*/
+    /* border-radius: 100px */
     background-color: transparent;
 }
 
-window#waybar.hidden {
-    opacity: 0.2;
+.modules-left {
+    border-radius: 100px;
+    background-color: rgba(18, 18, 18, 1.0);
+    padding: 0 8px;
 }
 
-#workspaces {
-	margin-top: 6px;
-	background: rgba(16, 20, 24, 0.5);
-	transition: none;
-
-    font-size: 12px;
+.modules-center {
+    border-radius: 100px;
+    background-color: rgba(18, 18, 18, 1.0);
 }
 
-#workspaces button {
-    border: none;
-    padding: 0 10px;
-    background-color: transparent;
-    color: #ffffff;
+.modules-right {
+    border-radius: 100px;
+    background-color: rgba(18, 18, 18, 1.0);
+    padding: 0 8px;
 }
 
-#workspaces button:hover {
-    background: rgba(255, 255, 255, 0.5);
-}
+tooltip {
+    background-color: rgba(18, 18, 18, 1.0);
+    border: 1px solid rgba(34, 34, 34, 0.5);
+    border-radius: 15px;
 
-#workspaces button.active {
-    background: #fff9bb;
-    color: #000000;
-}
-
-#workspaces button.active:hover {
-    background: #fffcdf;
-}
-
-#workspaces button.urgent {
-    background-color: #eb4d4b;
-}
-
-#mode {
-    background-color: #64727D;
-    border-bottom: 3px solid #ffffff;
+    font-family: "Inconsolata SemiBold", "Symbols Nerd Font";
+    font-size: 16px;
 }
 
 #clock,
@@ -63,54 +41,91 @@ window#waybar.hidden {
 #pulseaudio,
 #tray,
 #mode,
-#window {
-    margin-top: 6px;
-    padding: 0 12px;
+#window,
+#workspaces {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 0px 6px 0px 6px;
+    background-color: transparent;
+
+    font-family: "Inconsolata SemiBold", "Symbols Nerd Font";
+    font-size: 16px;
+}
+
+#workspaces {
+    /* border: rgba(255, 255, 255, 0.2) solid 2px; */
+    padding: 4px 12px;
+
+    transition-property: background, color, border;
+    transition-duration: 0.2s;
+}
+
+#workspaces button {
+    border: none;
+    border-radius: 0px;
+    padding: 0px 0px;
+    background: transparent;
     color: #ffffff;
+    margin: 0 4px;
+    min-width: 24px;
+
+    transition-property: background, color, border, margin, padding;
+    transition-duration: 0.2s;
 }
 
-/* If workspaces is the leftmost module, omit left margin */
-.modules-left > widget:first-child > * {
-    margin-left: 16px;
+#workspaces button:hover {
+    /* background: rgba(255, 255, 255, 0.5); */
+    color: rgba(255, 255, 255, 0.5);
 }
 
-/* If workspaces is the rightmost module, omit right margin */
-.modules-right > widget:last-child > * {
-    margin-right: 16px;
+#workspaces button.empty {
+    color: rgba(255, 255, 255, 0.25);
+}
+
+#workspaces button.active {
+    /* background: #ffffff; */
+    color: #ffffff;
+    border-bottom: 3px solid #ffffff;
+    margin-bottom: 1px;
+    /* padding: 0 4px; */
+}
+
+#workspaces button.urgent {
+    color: #eb4d4b;
+    border-bottom: 3px solid #eb4d4b;
+}
+
+#mode {
+    background-color: #64727D;
+    border-bottom: 3px solid #ffffff;
 }
 
 #clock {
-    background-color: #eefff1;
-    color: #000000;
+    color: #eefff1;
 }
 
 #cpu {
-    background-color: #FE968B;
-    color: #000000;
+    color: #FE968B;
 }
 
 #memory {
-    background-color: #FFEAAA;
-    color: #000000;
+    color: #FFEAAA;
 }
 
 #pulseaudio {
-    background-color: #b0f5e5;
-    color: #000000;
+    color: #a4e4fe;
 }
 
 #network {
-    background-color: #87ddff;
-    color: #000000;
+    color: #b0f5e5;
 }
 
 #tray {
-    background-color: rgba(16, 20, 24, 0.5);
+    /* border: rgba(255, 255, 255, 0.2) solid 2px; */
+    color: transparent;
 }
 
 #window {
-    font-family: 'Fira Mono', 'Noto Sans CJK SC', sans-serif;
-    font-weight: 400;
-    background-color: #cbecff;
-    color: #000000;
+    color: #e6f2d6;
+    margin-left: 4px;
 }

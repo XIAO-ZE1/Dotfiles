@@ -6,10 +6,9 @@
 <https://cascade.moe/posts/hyprland-configure/>
 
 参考dotfiles config
-【】<https://github.com/kmephistoh/dotfiles/tree/main/config>
-【】<https://github.com/Isoheptane/dotfiles/tree/blog-example>
-【】<https://github.com/theniceboy/.config/tree/master>
-【】<https://codeberg.org/unixchad/dotfiles>
+<https://github.com/kmephistoh/dotfiles/tree/main/config>
+<https://github.com/Isoheptane/dotfiles/tree/blog-example>
+<https://github.com/theniceboy/.config/tree/master>
 <https://github.com/Fireond/dotfiles/tree/main>
 
 ## Hyprland

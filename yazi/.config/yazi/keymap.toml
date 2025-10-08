@@ -1,0 +1,40 @@
+[mgr]
+prepend_keymap=[
+  { on = [ "g", "d" ], run = "cd ~/Downloads" },
+  { on = [ "g", "D" ], run = "cd ~/Documents/" },
+  { on = [ "g", "v" ], run = "cd ~/Videos/" },
+  { on = [ "g", "m" ], run = "cd ~/Music/" },
+  { on = [ "g", "P" ], run = "cd ~/Pictures/" },
+  { on = [ "g", "." ], run = "cd ~/dotfiles" },
+  { on = [ "g", "," ], run = "cd ~/.config" },
+	{ on = [ "g", "/" ], run = "cd /" },
+  { on = "o", run = "open --interactive" },
+
+  # plugins
+	{ on = [ "l" ], run = "plugin smart-enter" },
+	{ on = [ "s" ], run = "plugin fzf" },
+	{ on = [ "+" ], run = "plugin zoom 1", desc = "Zoom in hovered file" },
+	{ on = [ "-" ], run = "plugin zoom -1", desc = "Zoom out hovered file" },
+	{ on = [ "F" ], run = "plugin smart-filter", desc = "Smart filter" },
+	{ on = [ "c", "m" ], run = "plugin chmod", desc = "Chmod on selected files" },
+]
+
+[keys]
+"h" = "cd .."               # 返回上级目录
+"l" = "enter"               # 进入目录/打开文件
+"j" = "arrow-down"          # 向下移动
+"k" = "arrow-up"            # 向上移动
+"gg" = "go-top"             # 跳到顶部
+"G" = "go-bottom"           # 跳到底部
+
+# 文件操作
+"xx" = "cut"                # 剪切
+"yy" = "copy"               # 复制
+"pp" = "paste"              # 粘贴
+"dd" = "delete"             # 删除
+
+# 标签页管理
+"t" = "tab-new"             # 新建标签页
+"T" = "tab-close"           # 关闭标签页
+"[" = "tab-prev"            # 上一个标签页
+"]" = "tab-next"            # 下一个标签页

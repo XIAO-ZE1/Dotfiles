@@ -170,4 +170,11 @@ alias du="dust"
 alias df="duf"
 alias diff='delta'
 alias man='tldr'
-export RANGER_LOAD_DEFAULT_RC=false
+
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
+}
