@@ -970,8 +970,8 @@ sudo pacman -S tig
 # less 在终端中查看文件内容的工具，可以看作是 more 命令的增强版。它的名字源于 "less is more" 这句谚语，意思是它比 more 命令更强大。不会一次性加载整个文件到内存，适合查看大型日志文件
 sudo pacman -S less
 
-# gitui git的图形化界面管理
-sudo pacman -S gitui
+# lazygit git的图形化界面管理
+sudo pacman -S lazygit
 ```
 
 ### 开发
