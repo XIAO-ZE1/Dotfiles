@@ -773,6 +773,13 @@ ls # 按住alt+h，打开ls的tldr文档
 sudo pacman -S lazygit
 ```
 
+`translate-shell` 终端翻译工具
+
+```zsh
+sudo pacman -S translate-shell
+trans hello
+```
+
 ### 开发
 
 `LocalSend` 局域网传输 <https://localsend.org/zh-CN>
@@ -1035,4 +1042,14 @@ sudo pacman -S ark
 
 ```zsh
 sudo pacman -S gwenview
+```
+
+`polkit-kde-agent` 图形化权限验证代理
+
+磁盘挂载：当用户尝试挂载外部存储设备时，系统会通过 Polkit-KDE-Agent 请求用户输入密码。
+网络管理：在使用 NetworkManager 切换 Wi-Fi 或移动网络时，可能需要通过 Polkit 进行权限验证。
+系统操作：如关机、重启、挂起等操作，尤其是在多用户环境中。
+
+```zsh
+sudo pacman -S polkit-kde-agent
 ```
