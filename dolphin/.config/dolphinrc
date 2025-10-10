@@ -1,0 +1,25 @@
+MenuBar=Disabled
+
+[DetailsMode]
+PreviewSize=32
+
+[General]
+GlobalViewProps=false
+ShowFullPath=true
+ShowStatusBar=FullWidth
+ShowToolTips=true
+Version=202
+
+[IconsMode]
+IconSize=22
+PreviewSize=48
+
+[KFileDialog Settings]
+Places Icons Auto-resize=false
+Places Icons Static Size=22
+
+[MainWindow]
+MenuBar=Disabled
+
+[PreviewSettings]
+Plugins=appimagethumbnail,avif,comicbookthumbnail,djvuthumbnail,ebookthumbnail,exrthumbnail,heif,jxl,jpegthumbnail,kraorathumbnail,windowsimagethumbnail,windowsexethumbnail,opendocumentthumbnail,librsvg,svgthumbnail,cursorthumbnail,imagethumbnail,fontthumbnail,directorythumbnail,audiothumbnail
