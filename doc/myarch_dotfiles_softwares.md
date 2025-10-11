@@ -17,7 +17,7 @@
 ### `zsh和插件`，以及 `cd` 命令替代工具 `zoxide`
 
 ```zsh
-sudo pacman -S zsh zsh-autosuggestions zsh-syntax-highlighting zsh-completions
+sudo pacman -S zsh
 sudo pacman -S zoxide
 ```
 
@@ -50,11 +50,8 @@ nano ~/.zshrc
 `编辑`将以下内容分别添加到需要设置 zsh 账户的 ~/.zshrc 中：
 
 ```conf
-export EDITOR='vim' # （当然你也可以用nvim作为默认编辑器，我的做法是root用vim，普通用户用nvim来开发）
-
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# export _ZO_DATA_DIR="~/.local/share/zoxide" # 如果是root用户，可以这样做来共享普通用户的zoxide索引数据
+export EDITOR='vim' # (也可以用nvim作为默认编辑器，我是root用vim，普通用户用nvim)
+export _ZO_DATA_DIR="$HOME/.local/share/zoxide" # 指定zoxide数据库位置，让root用户和普通用户共用zoxide索引数据，路径根据自己情况写对。
 eval "$(zoxide init zsh)"
 
 alias cd='z' # 使用zoxide代替cd (可选)
@@ -67,10 +64,18 @@ curl -fsSL https://raw.githubusercontent.com/zimfw/install/master/install.zsh | 
 nano ~/.zimrc
 ```
 
+`编辑`
+
 ```conf
 zmodule romkatv/powerlevel10k
 zmodule sorin-ionescu/prezto --root modules/command-not-found --no-submodules # (可选)
 zmodule ohmyzsh/ohmyzsh --root plugins/sudo # (可选)按两下esc，可在前面加sudo
+#zmodule Aloxaf/fzf-tab # (可选) 我是直接pacman安装了fzf-tab-git
+```
+
+插件下载部署
+
+```zsh
 zimfw install
 ```
 
@@ -708,6 +713,12 @@ sudo pacman -S bat
 alias cat='bat' 
 ```
 
+`less` 可以cat查看时分页显示
+
+```zsh
+sudo pacman -S less
+```
+
 `lsd` ls的plus版本 彩色输出、图标支持、更好看的布局
 
 ```zsh
@@ -777,7 +788,13 @@ sudo pacman -S lazygit
 
 ```zsh
 sudo pacman -S translate-shell
-trans hello
+trans -b -i xxx -o xxx.txt # 简明翻译xxx，输出到xxx.txt
+```
+
+`cava` 终端音频可视化工具
+
+```zsh
+sudo pacman -S cava
 ```
 
 ### 开发
@@ -962,6 +979,12 @@ sudo pacman -S bitwarden
 
 ```zsh
 sudo pacman -S gimp
+```
+
+`pot` 跨平台划词翻译工具
+
+```zsh
+sudo pacman -S pot-translation
 ```
 
 ### KDE生态: sudo pacman -S <软件名>

@@ -15,7 +15,3 @@
 ## 切换桌面环境
 
 systemctl restart sddm
-
-## 如果使用 `mako`，可能会遇到通知框卡住的问题，重启进程
-
-killall mako && mako &
