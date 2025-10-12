@@ -323,10 +323,15 @@ ya pkg add yazi-rs/plugins:full-border
 ya pkg add yazi-rs/plugins:git
 ya pkg add yazi-rs/plugins:zoom
 ya pkg add yazi-rs/plugins:smart-filter
+ya pkg add yazi-rs/plugins:smart-enter
 ya pkg add yazi-rs/plugins:chmod
 ```
 
-yazi主题选择：<https://github.com/yazi-rs/flavors/tree/d04a298a8d4ada755816cb1a8cfb74dd46ef7124>
+[yazi主题选择](https://github.com/yazi-rs/flavors/tree/d04a298a8d4ada755816cb1a8cfb74dd46ef7124),例如mocha主题：
+
+```zsh
+ya pkg add yazi-rs/flavors:catppuccin-mocha
+```
 
 ### ranger (基于python编写，功能丰富，但现在我使用rust编写的yazi，这里文档用于记录我的ranger配置内容)
 
