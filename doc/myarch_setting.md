@@ -572,36 +572,6 @@ sudo sysctl -p
 sysctl net.ipv4.tcp_congestion_control
 ```
 
-## 【执行 sudo pacman -S archlinuxcn-keyring  故障操作】
-
-若安装 `archlinuxcn-keyring` 时报错，如果是由于密钥环的问题
-可先按照 `archlinuxcn` 官方说明 执行其中的命令，再安装 archlinuxcn-keyring
-
-GnuPG-2.1 与 pacman 密钥环
-`2014 年 12 月 8 日` 由于升级到了 gnupg-2.1，pacman 上游更新了密钥环的格式，这使得本地的主密钥无法签署其它密钥。这不会出问题，除非你想自定义 pacman 密钥环。不过，我们推荐所有用户都生成一个新的密钥环以解决潜在问题。
-
-此外，我们建议您安装 `haveged`，这是一个用来生成系统熵值的守护进程，它能加快加密软件（如 gnupg，包括生成新的密钥环）关键操作的速度。要完成这些操作，请以 root 权限运行：
-
-```zsh
-pacman -Syu haveged
-systemctl start haveged
-systemctl enable haveged
-
-rm -fr /etc/pacman.d/gnupg
-pacman-key --init
-pacman-key --populate archlinux
-pacman-key --populate archlinuxcn
-```
-
-【故障操作】如果你在新系统中尝试安装 archlinuxcn-keyring 包时遇到如下报错：
->error: archlinuxcn-keyring: Signature from "Jiachen YANG (Arch Linux Packager Signing Key) <farseerfc@archlinux.org>" is marginal trust
-
-请使用以下命令在本地信任 farseerfc 的 key 。此 key 已随 archlinux-keyring 安装在系统中，只是缺乏信任：
-
-```zsh
-sudo pacman-key --lsign-key "farseerfc@archlinux.org"
-```
-
 ## 显卡驱动
 
 Intel 核芯显卡

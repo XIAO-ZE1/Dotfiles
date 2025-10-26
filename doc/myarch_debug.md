@@ -15,3 +15,42 @@
 ## 切换桌面环境
 
 systemctl restart sddm
+
+## 长时间没有更新
+
+`sudo pacman -Syu`时遇到了`错误：GPGME 错误：无数据`
+通常是由于软件包数据库损坏或 PGP 签名问题导致的。
+以下是解决该问题的步骤。
+
+### 删除同步文件夹
+
+首先，删除 `/var/lib/pacman/sync` 文件夹以清除可能的损坏数据。
+
+```zsh
+sudo rm -R /var/lib/pacman/sync
+```
+
+### 重新同步软件包数据库
+
+然后，重新同步软件包数据库。
+
+```zsh
+sudo pacman -Syyu
+```
+
+### 初始化和填充密钥环
+
+如果问题仍然存在，可以尝试重新初始化和填充密钥环。
+
+```zsh
+sudo pacman-key --init
+sudo pacman-key --populate archlinux
+```
+
+### 刷新密钥环
+
+最后，刷新密钥环以确保所有密钥都是最新的。
+
+```zsh
+sudo pacman-key --refresh-keys
+```
